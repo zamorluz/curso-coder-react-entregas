@@ -1,11 +1,15 @@
 import { RiCloseLargeLine } from "react-icons/ri";
+import ItemList from "../ItemList";
 
 const CartContent = ({
     isOpen,
-    closeCart
+    closeCart,
+    cart,
+    setCart
 }) => {
+    const closeCartOnClick = (e) => e.target.querySelector('#cart-content') !== null && e.clientX < e.target.querySelector('#cart-content').getBoundingClientRect().left ? closeCart() : false;
     return(
-        <div className={isOpen ? 'position-fixed top-0 start-0 w-100 h-100 z-3' : 'd-none position-fixed top-0 start-0 w-100 h-100 z-3'} id="cart-holder">
+        <div className={isOpen ? 'position-fixed top-0 start-0 w-100 h-100 z-3' : 'd-none position-fixed top-0 start-0 w-100 h-100 z-3'} id="cart-holder" onClick={closeCartOnClick}>
             <div className="w-25 h-100 position-absolute top-0 end-0 w-25 bg-white" id="cart-content">
                 <div className="row bg-black text-white m-0">
                     <div className="col-10">
@@ -17,6 +21,7 @@ const CartContent = ({
                         </div>
                     </div>
                 </div>
+                <ItemList hideLink="true" items={cart} cart={cart} setCart={(cart) => setCart(cart)} outerClass="col-12" />
             </div>
         </div>
     );
