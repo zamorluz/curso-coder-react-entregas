@@ -6,7 +6,6 @@ import Error404 from "./errors/error404";
 import Error500 from "./errors/error500";
 import {default as Loader} from "./loaders/full";
 const ItemsContainer = ({
-    cart, setCart,
     greeting = "Productos",
     id = "items-container",
     className = ""
@@ -37,7 +36,7 @@ const ItemsContainer = ({
         <div className={className} id={id}>
             <h3>{greeting}</h3>
             <div className="row">
-                <ItemList cart={cart} setCart={(cart) => setCart(cart)} items={items}/>
+                <ItemList items={items}/>
             </div>
         </div>
     ));

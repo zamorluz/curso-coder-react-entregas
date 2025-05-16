@@ -1,8 +1,8 @@
 import {default as Layout} from "../../layouts/Public";
 
-const Error500 = ({cart, setCart}) => {
+const Error500 = () => {
     return (
-        <Layout cart={cart} setCart={(cart) => setCart(cart)}>
+        <Layout>
             <Error404/>
         </Layout>
     )

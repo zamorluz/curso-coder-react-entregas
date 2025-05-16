@@ -8,7 +8,7 @@ AWS_ECR_ID=368539636127
 AWS_REGISTRY_URL=$(AWS_ECR_ID).dkr.ecr.$(AWS_REGION).amazonaws.com
 
 run:
-	@cd src && npm run dev
+	@cd src && npm install && npm run dev
 ecr:
 	@aws ecr get-login-password --profile $(ARGS) --region $(AWS_REGION) | docker login --username AWS --password-stdin $(AWS_REGISTRY_URL)
 build: 

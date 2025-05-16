@@ -1,11 +1,9 @@
 import {default as Layout} from "../../layouts/Public";
 import {default as Error} from "../../errors/Error404";
 
-const Error404 = ({
-    cart, setCart
-}) => {
+const Error404 = () => {
     return (
-        <Layout cart={cart} setCart={(cart) => setCart(cart)}>
+        <Layout>
             <Error/>
         </Layout>
     )

@@ -4,31 +4,32 @@ import './scss/app.scss'
 import {default as PublicProductList} from './components/views/public/products/list.jsx';
 import {default as PublicProductDetail} from './components/views/public/products/detail.jsx';
 import Error404 from './components/views/errors/error404.jsx';
-import { useEffect, useState } from 'react';
-
+import { CartProvider } from './contexts/CartContext.jsx';
+import Cart from './components/views/cart.jsx';
+// import { default as productSeeder } from './seeders/productSeeder.jsx';
+// productSeeder();
 /** 
  * @see https://reactrouter.com/start/declarative/routing
 */
 function App() {
-    const [cart, setCart] = useState({});
-    useEffect(() => {
-      console.log(`cart updated`, cart)
-    },[cart])
   return (
     <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<Home cart={cart} setCart={(cart)=> setCart(cart)}/>}/>
-        <Route path="categories">
-          <Route path=':category_id' element={<PublicProductList cart={cart} setCart={(cart)=> setCart(cart)} greeting="Categoria"/>}/>
-        </Route>
-        <Route path="products">
-          <Route index element={<PublicProductList cart={cart} setCart={(cart)=> setCart(cart)} />} />
-          <Route path=":product_id" element={<PublicProductDetail cart={cart} setCart={(cart)=> setCart(cart)} />} />
-        </Route>
+      <CartProvider>
+        <Routes>
+          <Route path="/" element={<Home/>}/>
+          <Route path="/cart" element={<Cart/>}/>
+          <Route path="categories">
+            <Route path=':category_id' element={<PublicProductList greeting="Categoria"/>}/>
+          </Route>
+          <Route path="products">
+            <Route index element={<PublicProductList />} />
+            <Route path=":product_id" element={<PublicProductDetail />} />
+          </Route>
 
-        <Route path="*" element={<Error404 cart={cart} setCart={(cart)=> setCart(cart)}/>} />
+          <Route path="*" element={<Error404/>} />
 
-      </Routes>
+        </Routes>
+      </CartProvider>
     </BrowserRouter>
   )
 }

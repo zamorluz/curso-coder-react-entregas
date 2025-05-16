@@ -4,9 +4,7 @@ import CartWidget from "../cart/Widget.jsx";
 import CartContent from "../cart/Content.jsx";
 import { getProductCategories } from "../../mocks/asyncService.jsx";
 import { NavLink } from "react-router-dom";
-const Public = ({
-    cart, setCart
-}) => {
+const Public = () => {
     const [menuIsOpen, setMenuIsOpen] = useState(false);
     const [subMenuIsOpen, setSubMenuIsOpen] = useState(false);
     const [categories, setCategories] = useState([]);
@@ -47,7 +45,7 @@ const Public = ({
                 {categories.map(category => <NavLink key={category} to={`/categories/${category}`} className="p-3">{category}</NavLink>)}
             </div>
         </nav>
-        <CartContent cart={cart} setCart={(cart) => setCart(cart)} isOpen={menuIsOpen} closeCart={() => setMenuIsOpen(!menuIsOpen)}/>
+        <CartContent isOpen={menuIsOpen} closeCart={() => setMenuIsOpen(!menuIsOpen)}/>
     </>
     );
 }
